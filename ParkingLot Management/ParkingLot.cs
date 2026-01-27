@@ -53,12 +53,10 @@ namespace ParkingLot_Management
             if (ParkedVehicles.Count == 0)
             {
                 Console.WriteLine("No vehicles parked.");
-
+                return;
             }
-            else
-            {
-                Console.WriteLine("Parked vehicles:");
-            }
+            Console.WriteLine("Parked vehicles:");
+            
             foreach (Vehicle v in ParkedVehicles)
             {
                 Console.WriteLine($"{v.VehicleNumber}({v.VehicleType})");

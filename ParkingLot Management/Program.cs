@@ -24,29 +24,25 @@ namespace ParkingLot_Management
                 {
                     case 1:
                         Console.Write("Enter the vehicle type(car/bike/van): ");
-                        string type = Console.ReadLine();
-
-                        Console.WriteLine("Enter the vehicle number: ");
-                        string number = Console.ReadLine();
+                        string type = Console.ReadLine().ToLower();
                         Vehicle vehicle = null;
-                        if (type.ToLower() == "car")
+                        if (type == "car" || type == "bike" || type == "van")
                         {
-                            vehicle = new Car(number);
-                        }
-                        else if (type.ToLower() == "bike")
-                        {
-                            vehicle = new Bike(number);
-                        }
-                        else if (type.ToLower() == "van")
-                        {
-                            vehicle = new Van(number);
+                            Console.WriteLine("Enter the vehicle number: ");
+                            string number = Console.ReadLine();
+                            if (type == "car")
+                                vehicle = new Car(number);
+                            else if (type == "bike")
+                                vehicle = new Bike(number);
+                            else if (type == "van")
+                                vehicle = new Van(number);
+                         lot.ParkVehicle(vehicle);
                         }
                         else
                         {
                             Console.WriteLine("Invalid vehicle type");
                             continue;
                         }
-                        lot.ParkVehicle(vehicle);
                         break;
                     case 2:
                         Console.WriteLine("Enter the vehicle number to remove: ");
