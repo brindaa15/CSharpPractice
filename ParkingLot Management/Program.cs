@@ -5,7 +5,7 @@ namespace ParkingLot_Management
     {
         static void Main()
         {
-            ParkingLot lot = new ParkingLot(50);
+            ParkingLot lot = new ParkingLot(10);
             //Loop
             while (true)
             {
@@ -16,9 +16,10 @@ namespace ParkingLot_Management
                 Console.WriteLine("4. Update Vehicle Number");
                 Console.WriteLine("5. Exit: ");
                 Console.WriteLine("--------------------------------------------");
-                Console.Write("Enter choice:");
+                Console.Write("Enter choice(1/2/3/4/5):");
 
                 int choice = int.Parse(Console.ReadLine());
+
                 //Conditional Statement
                 switch (choice)
                 {
@@ -29,7 +30,7 @@ namespace ParkingLot_Management
                         if (type == "car" || type == "bike" || type == "van")
                         {
                             Console.WriteLine("Enter the vehicle number: ");
-                            string number = Console.ReadLine();
+                            string number = Console.ReadLine().Trim();
                             if (type == "car")
                                 vehicle = new Car(number);
                             else if (type == "bike")
@@ -64,7 +65,6 @@ namespace ParkingLot_Management
                     default:
                         Console.WriteLine("Invalid choice...");
                         break;
-
                 }
             }
         }

@@ -7,6 +7,7 @@ namespace ParkingLot_Management
     {
         private int maxCapacity;
         private List<Vehicle> ParkedVehicles;
+
         public ParkingLot(int capacity)
         {
             maxCapacity = capacity;
@@ -15,6 +16,15 @@ namespace ParkingLot_Management
         //Park Vehicle
         public void ParkVehicle(Vehicle vehicle)
         {
+            //checks if vehicle No already exist
+            foreach (var v in ParkedVehicles)
+            {
+                if (v.VehicleNumber.Trim()==(vehicle.VehicleNumber.Trim())
+                {
+                    Console.WriteLine("Error vehicle number already exists!");
+                    return;
+                }
+            }
             if (ParkedVehicles.Count >= maxCapacity)
             {
                 Console.WriteLine("Parking Full!!");
@@ -40,6 +50,7 @@ namespace ParkingLot_Management
             }
             if (found != null)
             {
+                Console.WriteLine($"Total Minutes vehicle parked:${}");
                 Console.WriteLine($"Vehicle exited.Fees to be paid:${found.CalculateFees()}");
             }
             else
@@ -66,6 +77,15 @@ namespace ParkingLot_Management
         public void UpdateVehicle(string oldNumber, string newNumber)
         {
             Vehicle found = null;
+            // To check if the new vehicle number is already present
+            foreach (var v in ParkedVehicles)
+            {
+                if (v.VehicleNumber == newNumber)
+                {
+                    Console.WriteLine("Error New vehicle number already exists!");
+                    return;
+                }
+            }
             for (int i = 0; i < ParkedVehicles.Count; i++)
             {
                 if (ParkedVehicles[i].VehicleNumber == oldNumber)
@@ -74,10 +94,9 @@ namespace ParkingLot_Management
                     break;
                 }
             }
-
             if (found != null)
             {
-                found.UpdateVehicleNumber(newNumber);
+                found.UpdateVehicleNumber(newNumber.);
                 Console.WriteLine("Vehicle number updated successfully.");
             }
             else
@@ -85,6 +104,5 @@ namespace ParkingLot_Management
                 Console.WriteLine("Vehicle not found!");
             }
         }
-
     }
 }
