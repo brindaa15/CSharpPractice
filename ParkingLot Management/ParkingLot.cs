@@ -50,7 +50,6 @@ namespace ParkingLot_Management
             }
             if (found != null)
             {
-                Console.WriteLine($"Total Minutes vehicle parked:${}");
                 Console.WriteLine($"Vehicle exited.Fees to be paid:${found.CalculateFees()}");
             }
             else
