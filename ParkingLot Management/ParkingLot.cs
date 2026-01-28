@@ -19,7 +19,7 @@ namespace ParkingLot_Management
             //checks if vehicle No already exist
             foreach (var v in ParkedVehicles)
             {
-                if (v.VehicleNumber.Trim()==(vehicle.VehicleNumber.Trim())
+                if (v.VehicleNumber.Trim()==vehicle.VehicleNumber.Trim())
                 {
                     Console.WriteLine("Error vehicle number already exists!");
                     return;
@@ -95,7 +95,7 @@ namespace ParkingLot_Management
             }
             if (found != null)
             {
-                found.UpdateVehicleNumber(newNumber.);
+                found.UpdateVehicleNumber(newNumber);
                 Console.WriteLine("Vehicle number updated successfully.");
             }
             else
