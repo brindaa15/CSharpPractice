@@ -40,26 +40,26 @@ class Employee
     }
 }
 //single inheritance
-    class Manager : Employee
+class Manager : Employee
+{
+    private double bonus;
+    public double Bonus
     {
-        private double bonus;
-        public double Bonus
-        {
-            get { return bonus; }
-            set { bonus = value; }
-        }
-        public override void display()
-        {
-            Console.WriteLine($"Manager Id: {Id}");
-            Console.WriteLine($"Manager Name: {Name}");
-            Console.WriteLine($"Manager Department: {Dept}");
-            Console.WriteLine($"Manager Salary: {Salary}");
-            Console.WriteLine($"Manager Bonus: {Bonus}");
-        }
+        get { return bonus; }
+        set { bonus = value; }
     }
-    class Program
+    public override void display()
     {
-      static  List<Employee> emp = new List<Employee>();
+        Console.WriteLine($"Manager Id: {Id}");
+        Console.WriteLine($"Manager Name: {Name}");
+        Console.WriteLine($"Manager Department: {Dept}");
+        Console.WriteLine($"Manager Salary: {Salary}");
+        Console.WriteLine($"Manager Bonus: {Bonus}");
+    }
+}
+class Program
+{
+    static List<Employee> emp = new List<Employee>();
     static void Main()
     {
         while (true)
@@ -96,21 +96,22 @@ class Employee
                     break;
             }
             // add employee or manager
-            static void AddEmployee() {
+            static void AddEmployee()
+            {
                 Console.Write("Enter 1 for Employee or 2 for Manager: ");
                 int type = int.Parse(Console.ReadLine());
                 if (type != 1 && type != 2)
                 {
                     Console.WriteLine("Error: Invalid type! Must be 1 or 2.");
-                    return; 
+                    return;
                 }
                 Console.Write("Enter id: ");
                 int id = int.Parse(Console.ReadLine());
 
                 // To add only unique id
-                foreach(var e in emp)
+                foreach (var e in emp)
                 {
-                    if(e.Id == id)
+                    if (e.Id == id)
                     {
                         Console.WriteLine("Error: Id already exists TRY AGAIN!");
                         return;
@@ -132,7 +133,7 @@ class Employee
                 else
                 {
                     emp.Add(new Employee { Id = id, Name = name, Dept = dept, Salary = salary });
-                    }
+                }
                 Console.WriteLine("Added details Successfully!!");
             }
             // remove employee by id
@@ -149,6 +150,7 @@ class Employee
                         Console.WriteLine("Employee/Manager removed successfully!");
                         found = true;
                         break; 
+
                     }
                 }
                 if (!found)
@@ -157,6 +159,12 @@ class Employee
             // view all employees
             static void ViewEmployees()
             {
+                if (emp.Count == 0)
+                {
+                    Console.WriteLine("No employees found!");
+                    return;
+                }
+
                 foreach (var e in emp)
                 {
                     Console.WriteLine(" ");
