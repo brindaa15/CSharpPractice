@@ -135,6 +135,25 @@ class Employee
                     }
                 Console.WriteLine("Added details Successfully!!");
             }
+            // remove employee by id
+            static void RemoveEmployee()
+            {
+                Console.Write("Enter Id of Employee/Manager to remove: ");
+                int id = int.Parse(Console.ReadLine());
+                bool found = false;
+                for (int i = 0;i < emp.Count;i++)
+                {
+                    if (emp[i].Id == id)
+                    {
+                        emp.RemoveAt(i);
+                        Console.WriteLine("Employee/Manager removed successfully!");
+                        found = true;
+                        break; 
+                    }
+                }
+                if (!found)
+                    Console.WriteLine("Employee/Manager not found!");
+            }
             // view all employees
             static void ViewEmployees()
             {
@@ -160,44 +179,6 @@ class Employee
                         Console.WriteLine("Salary updated successfully!");
                         found = true;
                         break; 
-                    }
-                }
-
-                if (!found)
-                    Console.WriteLine("Employee/Manager not found!");
-            }
-            // remove employee by id
-            static void RemoveEmployee()
-            {
-                Console.Write("Enter Id of Employee/Manager to remove: ");
-                int id = int.Parse(Console.ReadLine());
-                bool found = false;
-                for (int i = 0;i < emp.Count;i++)
-                {
-                    if (emp[i].Id == id)
-                    {
-                        emp.RemoveAt(i);
-                        Console.WriteLine("Employee/Manager removed successfully!");
-                        found = true;
-                        break; 
-                    }
-                }
-                if (!found)
-                    Console.WriteLine("Employee/Manager not found!");
-            }
-            static void RemoveEmployees()
-            {
-                Console.Write("Enter Id of Employee/Manager to remove: ");
-                int id = int.Parse(Console.ReadLine());
-                bool found = false;
-                for (int i = 0; i < emp.Count; i++)
-                {
-                    if (emp[i].Id == id)
-                    {
-                        emp.RemoveAt(i);
-                        Console.WriteLine("Employee/Manager removed successfully!");
-                        found = true;
-                        break;
                     }
                 }
                 if (!found)
