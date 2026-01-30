@@ -6,6 +6,7 @@ namespace ParkingLot_Management
     {
         public Car(string number) : base(number) { }
         public override string VehicleType => "Car";
+        //Runtime Polymorphism
         public override double CalculateFees()
         {
             double minutes = (DateTime.Now - EntryTime).TotalMinutes;
@@ -18,6 +19,7 @@ namespace ParkingLot_Management
     {
         public Bike(string number) : base(number) { }
         public override string VehicleType => "Bike";
+        //Runtime Polymorphism
         public override double CalculateFees()
         {
             double minutes = (DateTime.Now - EntryTime).TotalMinutes;
@@ -30,6 +32,7 @@ namespace ParkingLot_Management
     {
         public Van(string number) : base(number) { }
         public override string VehicleType => "Van";
+        //Runtime Polymorphism
         public override double CalculateFees()
         {
             double minutes = (DateTime.Now - EntryTime).TotalMinutes;

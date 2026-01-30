@@ -2,7 +2,8 @@
 
 namespace ParkingLot_Management
 {
-    class Vehicle
+    // Abstract class (Vehicle is a base class)
+     abstract class Vehicle:ICalculateParkingFee
     {
         //Fields
         private string vehicleNumber;
@@ -12,15 +13,15 @@ namespace ParkingLot_Management
         public Vehicle(string number)
         {
             vehicleNumber = number;
-            entryTime = DateTime.Now;       // this give the current time in system
+            entryTime = DateTime.Now;     // this gives the current time in system
         }
-        //Encapsulation-Properties
+        //Encapsulation - Properties
         public string VehicleNumber => vehicleNumber;
         public DateTime EntryTime => entryTime;
 
-        //Runtime Polymorphism
-        public virtual string VehicleType => "Vehicle";
-        public virtual double CalculateFees() => 0;
+        //Abstraction (should be implemented by derived classes)
+        public abstract string VehicleType {  get; }
+        public abstract double CalculateFees();
 
         //Method
         public void UpdateVehicleNumber(string newNumber)

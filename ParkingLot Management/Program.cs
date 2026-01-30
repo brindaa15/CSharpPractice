@@ -18,8 +18,12 @@ namespace ParkingLot_Management
                 Console.WriteLine("--------------------------------------------");
                 Console.Write("Enter choice(1/2/3/4/5):");
 
-                int choice = int.Parse(Console.ReadLine());
-
+                // Check whether the input is integer
+                if (!int.TryParse(Console.ReadLine(), out int choice))
+                {
+                    Console.WriteLine("Please enter a valid number.");
+                    continue;
+                }
                 //Conditional Statement
                 switch (choice)
                 {
@@ -45,23 +49,24 @@ namespace ParkingLot_Management
                             continue;
                         }
                         break;
+
                     case 2:
                         Console.WriteLine("Enter the vehicle number to remove: ");
                         string removeNumber = Console.ReadLine();
                         lot.RemoveVehicle(removeNumber);
                         break;
+
                     case 3:
                         lot.ViewParkedVehicles();
                         break;
+
                     case 4:
-                        Console.Write("Enter the old vehicle number: ");
-                        string oldNo = Console.ReadLine();
-                        Console.Write("Enter the new vehicle number: ");
-                        string newNo = Console.ReadLine();
-                        lot.UpdateVehicle(oldNo, newNo);
+                        lot.UpdateVehicleFromConsole();
                         break;
+
                     case 5:
                         return;
+
                     default:
                         Console.WriteLine("Invalid choice...");
                         break;
