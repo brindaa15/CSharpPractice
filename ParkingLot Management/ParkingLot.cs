@@ -35,6 +35,7 @@ namespace ParkingLot_Management
                 Console.WriteLine($"{vehicle.VehicleType} parked. EntryTime:{vehicle.EntryTime}");
             }
         }
+
         //Remove Vehicle and calculate parking fee
         public void RemoveVehicle(string number)
         {
@@ -57,6 +58,7 @@ namespace ParkingLot_Management
                 Console.WriteLine("Vehicle not found!");
             }
         }
+
         //View  all Parked Vehicle
         public void ViewParkedVehicles()
         {
@@ -72,6 +74,7 @@ namespace ParkingLot_Management
                 Console.WriteLine($"{v.VehicleNumber}({v.VehicleType})");
             }
         }
+
         //checks if parking lot is empty
         public bool IsEmpty()
         {
@@ -94,7 +97,6 @@ namespace ParkingLot_Management
 
             UpdateVehicle(oldNumber, newNumber);
         }
-
 
         //Update vehicle Number
         public void UpdateVehicle(string oldNumber, string newNumber)

@@ -18,8 +18,12 @@ namespace ParkingLot_Management
                 Console.WriteLine("--------------------------------------------");
                 Console.Write("Enter choice(1/2/3/4/5):");
 
-                int choice = int.Parse(Console.ReadLine());
-
+                // Check whether the input is integer
+                if (!int.TryParse(Console.ReadLine(), out int choice))
+                {
+                    Console.WriteLine("Please enter a valid number.");
+                    continue;
+                }
                 //Conditional Statement
                 switch (choice)
                 {
