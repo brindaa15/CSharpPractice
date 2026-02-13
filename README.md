@@ -8,7 +8,7 @@ It simulates basic parking lot operations such as:
 - Updating vehicle numbers with proper validations
 - Track parking history in the database.
   
-##Technologies Used
+## Technologies Used
 - C# (.NET)
 - ADO.NET for SQL Server database interactions
 - SQL Server (tables and stored procedures)
