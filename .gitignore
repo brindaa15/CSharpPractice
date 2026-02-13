@@ -1,20 +1,41 @@
-
-# Visual Studio
-.vs/
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
-
-# Build results
+# Build folders
 bin/
 obj/
 Debug/
 Release/
-idea/
+
+# Visual Studio / Rider / IDE
+.vs/
+.idea/
+
+# ReSharper
+*.ReSharper
+
+# User-specific / temporary files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.tmp
+*.cache
+*.userprefs
+
+# Executables / DLLs
 *.dll
 *.exe
 *.pdb
-*.cache
+
+# Local SQL Server database files
+*.mdf
+*.ldf
+*.ndf
+
+# Logs
+*.log
+
+# Database scripts (keep these!)
+!Database/*.sql
+
+# SQLite / other database files
 *.db
 *.sqlite
