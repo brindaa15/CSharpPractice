@@ -1,0 +1,30 @@
+# Build folders
+bin/
+obj/
+
+# Visual Studio / Rider / IDE
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.idea/
+
+# ReSharper
+*.ReSharper
+
+# Local SQL Server database files (if you ever use .mdf / .ldf)
+*.mdf
+*.ldf
+*.ndf
+
+# Logs and temporary files
+*.log
+*.tmp
+*.cache
+
+# Ignore user-specific settings
+*.userprefs
+
+# Keep your SQL scripts!
+!Database/*.sql
