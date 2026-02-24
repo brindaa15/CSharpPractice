@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Data.SqlClient;
+using ParkingLot_Management.Data;
 
 namespace ParkingLot_Management
 {
     class ParkingLot
     {
         private int maxCapacity;
-        // Connection string for SQL Server LocalDB
-        private readonly string connectionString =
-            "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ParkingLotDB;Integrated Security=True";
         public ParkingLot(int capacity)
         {
             maxCapacity = capacity;
@@ -19,7 +17,7 @@ namespace ParkingLot_Management
         // Add vehicle using stored procedure (enforces maxCapacity)
         public void ParkVehicle(Vehicle vehicle)
         {
-            using SqlConnection conn = new SqlConnection(connectionString);
+            using SqlConnection conn = DbConnection.Create();
             conn.Open();
             // Calling stored procedure: ParkVehicle
             using SqlCommand cmd = new SqlCommand("ParkVehicle", conn);
@@ -46,14 +44,15 @@ namespace ParkingLot_Management
         // Remove vehicle using stored procedure
         public void RemoveVehicle(string number)
         {
-            using SqlConnection conn = new SqlConnection(connectionString);
+            using SqlConnection conn = DbConnection.Create();
+
             conn.Open();
 
             string type = "";
             DateTime entryTime = DateTime.Now;
             double fee = 0;
 
-            string selectQuery = "SELECT VehicleType, EntryTime FROM ParkedVehicles WHERE VehicleNumber=@num";
+            var selectQuery = "SELECT VehicleType, EntryTime FROM ParkedVehicles WHERE VehicleNumber=@num";
             using (SqlCommand cmd = new SqlCommand(selectQuery, conn))
             {
                 cmd.Parameters.AddWithValue("@num", number);
@@ -65,7 +64,6 @@ namespace ParkingLot_Management
                     Console.WriteLine("Vehicle not found!");
                     return;
                 }
-
                 type = reader.GetString(0);
                 entryTime = reader.GetDateTime(1);
                 reader.Close();
@@ -83,16 +81,15 @@ namespace ParkingLot_Management
                         System.Reflection.BindingFlags.NonPublic |
                         System.Reflection.BindingFlags.Instance)
                     .SetValue(vehicle, new ParkingInfo(entryTime));
+
                 fee = vehicle.CalculateFees();
             }
-
             using SqlCommand cmd2 = new SqlCommand("RemoveVehicle", conn);
             cmd2.CommandType = System.Data.CommandType.StoredProcedure;
 
             cmd2.Parameters.AddWithValue("@VehicleNumber", number);
             cmd2.Parameters.AddWithValue("@ExitTime", DateTime.Now);
             cmd2.Parameters.AddWithValue("@Fee", fee);
-
             try
             {
                 cmd2.ExecuteNonQuery();
@@ -107,7 +104,7 @@ namespace ParkingLot_Management
         // View all parked vehicles
         public void ViewParkedVehicles()
         {
-            using SqlConnection conn = new SqlConnection(connectionString);
+            using SqlConnection conn = DbConnection.Create();
             conn.Open();
 
             using SqlCommand cmd = new SqlCommand("ViewParkedVehicles", conn);
@@ -140,7 +137,7 @@ namespace ParkingLot_Management
         // Check if parking lot is empty using stored procedure
         public bool IsEmpty()
         {
-            using SqlConnection conn = new SqlConnection(connectionString);
+            using SqlConnection conn = DbConnection.Create();
             conn.Open();
             using SqlCommand cmd = new SqlCommand("GetParkedCount", conn);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -169,9 +166,8 @@ namespace ParkingLot_Management
 
         public void UpdateVehicle(string oldNumber, string newNumber)
         {
-            using SqlConnection conn = new SqlConnection(connectionString);
+            using SqlConnection conn = DbConnection.Create();
             conn.Open();
-
             using SqlCommand cmd = new SqlCommand("UpdateVehicleNumber", conn);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@OldNumber", oldNumber);
