@@ -1,6 +1,6 @@
-namespace ParkingLot_Management
+﻿namespace ParkingLot_Management
 {
-    // Interface
+    //Interface
     // any class that implements this should calculate parking fee
     interface ICalculateParkingFee
     {
